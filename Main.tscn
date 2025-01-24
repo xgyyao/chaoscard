@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://de5ejpldmmlnb"]
+
+[ext_resource type="Script" path="res://Scripts/CardBase.gd" id="1_3m1d4"]
+[ext_resource type="Script" path="res://Scripts/HandArea.gd" id="1_6frmb"]
+[ext_resource type="Texture2D" uid="uid://c8ibu3qscu0wo" path="res://Assets/Cards/cards.png" id="2_2dc25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2686"]
+size = Vector2(43.5, 61)
+
+[node name="Main" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HandArea" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_6frmb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HandArea"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="DragPlaceholder" type="Control" parent="UI/HandArea"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Cards" type="Node2D" parent="."]
+
+[node name="CardBase" type="Area2D" parent="Cards"]
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+script = ExtResource("1_3m1d4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cards/CardBase"]
+texture = ExtResource("2_2dc25")
+
+[node name="Label" type="Label" parent="Cards/CardBase"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cards/CardBase"]
+position = Vector2(0.25, 0.5)
+shape = SubResource("RectangleShape2D_p2686")
+
+[node name="BattleSystem" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
